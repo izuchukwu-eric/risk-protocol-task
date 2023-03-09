@@ -49,7 +49,7 @@ function Modal(props: Props) {
     <>
       <div className="left-0 top-44 right-0 absolute justify-center items-center rounded-[20px] flex z-50 outline-none focus:outline-none">
         <div>
-          <div className="border-0 rounded-lg shadow-lg flex flex-col md:w-[480px] w-[350px] md:mt-0 mt-40 max-w-[500px] md:h-[456px] h-[430px] bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded-lg shadow-lg flex flex-col md:w-[480px] w-[350px] md:mt-0 mt-36 max-w-[500px] md:h-[456px] h-[430px] bg-white outline-none focus:outline-none">
             <div className="flex items-start justify-between px-5 pt-5 rounded-t">
               <h3 className="text-xl font-semibold">{props.title}</h3>
               <button
