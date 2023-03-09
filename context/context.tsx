@@ -16,9 +16,9 @@ export const OrderBookContext = createContext<OrderContextType>({} as OrderConte
 export const OrderBookProvider = ({ children }: Props  ) => {
   const [state, setState] = useState<ApiResponse>();
 
-    const getCurrentState = async () => {
+    const getCurrentState = async (quoteToken: string, baseToken: string) => {
       const url =
-        "https://api.0x.org/orderbook/v1?quoteToken=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&baseToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+        `https://api.0x.org/orderbook/v1?quoteToken=${quoteToken}&baseToken=${baseToken}`;
   
       try {
         const response = await fetch(url);

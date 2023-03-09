@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Modal from './Modal';
 import { Token } from '../utils/types';
 import Link from 'next/link';
+import { useOrderBookContext } from '../context/context';
 
 const style = {
   wrapper: `w-screen flex items-center justify-center mb-20`,
@@ -20,6 +21,7 @@ const style = {
 }
 
 const Main = () => {
+  const { getCurrentState, state } = useOrderBookContext();
   const [payToken, setPayToken] = useState<Token>();
   const [receiveToken, setReceiveToken] = useState<Token>()
   const [showModal, setShowModal] = useState(false);
@@ -28,6 +30,10 @@ const Main = () => {
   const onShowModal = (text: string) => {
     setLabel(text);
     setShowModal(true);
+  }
+
+  const confirm = () => {
+    getCurrentState(payToken?.address, receiveToken?.address)
   }
 
   return (
@@ -106,7 +112,7 @@ const Main = () => {
           </div>
         </div>
         <Link href={'/orderbook'}>
-          <button disabled={!payToken || !receiveToken} className={style.confirmButton}>
+          <button disabled={!payToken || !receiveToken} className={style.confirmButton} onClick={confirm}>
             OrderBook
           </button>
         </Link>

@@ -89,6 +89,7 @@ export interface ApiResponse {
     name: string;
     imageUrl: string;
     symbol: string;
+    address: string;
   };
   
   export type Socket = {

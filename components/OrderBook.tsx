@@ -5,11 +5,7 @@ import { useOrderBookContext } from "../context/context";
 import Loader from "./Loader";
 
 function OrderBook() {
-  const { getCurrentState, state } = useOrderBookContext();
-
-  useEffect(() => {
-    getCurrentState();
-  }, []);
+  const { state } = useOrderBookContext();
 
   useWebSocket();
 

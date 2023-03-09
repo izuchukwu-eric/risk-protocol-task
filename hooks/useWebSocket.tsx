@@ -5,7 +5,6 @@ import { Socket } from "../utils/types";
 function useSocket() {
   const { state, getUpdate } = useOrderBookContext();
 
-  const url = "https://api.0x.org/orderbook/v1?quoteToken=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&baseToken=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
   const WebsocketUrl = "wss://api.0x.org/orderbook/v1";
 
   const parseMessage = useCallback(
@@ -40,7 +39,7 @@ function useSocket() {
     };
 
     return () => ws.close();
-  }, [parseMessage, url]);
+  }, [parseMessage]);
 }
 
 export default useSocket;
