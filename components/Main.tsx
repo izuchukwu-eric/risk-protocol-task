@@ -1,0 +1,132 @@
+import React, { useState } from 'react'
+import { useOrderBookContext } from '../context/context';
+import { AiOutlineDown } from 'react-icons/ai'
+import Image from 'next/image'
+import Modal from './Modal';
+import { Token } from '../utils/types';
+
+const style = {
+  wrapper: `w-screen flex items-center justify-center mb-20`,
+  content: `bg-[#191B1F] md:w-[30rem] w-[22rem] rounded-2xl p-4`,
+  formHeader: `px-2 flex items-center justify-between font-semibold text-xl`,
+  transferPropContainer: `bg-[#20242A] my-3 rounded-2xl p-6 text-3xl  border border-[#20242A] hover:border-[#41444F]  flex justify-between`,
+  transferPropInput: `bg-transparent placeholder:text-[#B2B9D2] outline-none mb-6 w-full text-2xl`,
+  currencySelector: `flex w-1/2`,
+  currencySelectorContent: `w-full h-min flex justify-between items-center bg-[#2D2F36] hover:bg-[#41444F] rounded-2xl text-xl font-medium cursor-pointer p-2 mt-[-0.2rem]`,
+  currencySelectorIcon: `flex items-center`,
+  currencySelectorTicker: `mx-2`,
+  currencySelectorArrow: `text-lg`,
+  confirmButton: `bg-[#2172E5] my-2 rounded-2xl py-6 px-8 text-xl font-semibold flex items-center justify-center cursor-pointer border border-[#2172E5] hover:border-[#234169]`,
+}
+
+const options = [
+  { value: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', label: 'WETH'},
+  { value: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52', label: 'BNB' },
+  { value: '0x6b175474e89094c44da98b954eedeac495271d0f', label: 'ETH' },
+  { value: '0xdAC17F958D2ee523a2206206994597C13D831ec7', label: 'USDT'},
+  { value: '0x6B175474E89094C44Da98b954EedeAC495271d0F', label: 'DAI'},
+  { value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', label: 'USDC'},
+  { value: '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', label: 'MKR'},
+];
+
+const Main = () => {
+  const { getOrderBook } = useOrderBookContext();
+  const [payToken, setPayToken] = useState<Token>();
+  const [receiveToken, setReceiveToken] = useState<Token>()
+  const [showModal, setShowModal] = useState(false);
+  const [label, setLabel] = useState<string>("")
+
+
+  const confirm = () => {
+    // getOrderBook(quoteToken?.value, baseToken?.value)
+  }
+
+  const onShowModal = (text: string) => {
+    setLabel(text);
+    setShowModal(true);
+  }
+
+  return (
+    <div className={style.wrapper}>
+      <div className={style.content}>
+        <div className={style.formHeader}>
+          <div>You Pay</div>
+        </div>
+        <div className={style.transferPropContainer}>
+          <input
+            type="text"
+            className={style.transferPropInput}
+            placeholder="0.0"
+            pattern="^[0-9]*[.,]?[0-9]*$"
+          />
+          <div className={style.currencySelector} onClick={() => onShowModal("You Pay")}>
+            <div className={style.currencySelectorContent}>
+              <div className={style.currencySelectorIcon}>
+                {payToken && (
+                  <div className="w-6 mt-1">
+                    <Image
+                      src={payToken?.imageUrl}
+                      alt="currency"
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
+                  </div>
+                )}
+              </div>
+              <div className={style.currencySelectorTicker}>
+                {(payToken?.name) ?? "Token"}
+              </div>
+              <AiOutlineDown className={style.currencySelectorArrow} />
+            </div>
+          </div>
+        </div>
+        {showModal && (
+          <Modal
+            set={setShowModal}
+            title={label}
+            setPayToken={setPayToken}
+            setReceiveToken={setReceiveToken}
+            type={label}
+          />
+        )}
+        <div className={style.formHeader}>
+          <div>You Get</div>
+        </div>
+        <div className={style.transferPropContainer}>
+          <input
+            type="text"
+            className={style.transferPropInput}
+            placeholder="0.0"
+          />
+          <div className={style.currencySelector}onClick={() => onShowModal("You Get")}>
+            <div className={style.currencySelectorContent}>
+              <div className={style.currencySelectorIcon}>
+              {receiveToken && (
+                <div className="w-6 mt-1">
+                  <Image
+                    src={receiveToken?.imageUrl}
+                    alt="currency"
+                    width={24}
+                    height={24}
+                    className="rounded-full"
+                  />
+                </div>
+              )}
+              </div>
+              <div className={style.currencySelectorTicker}>
+                {(receiveToken?.name) ?? "Token"}
+              </div>
+              <AiOutlineDown className={style.currencySelectorArrow} />
+            </div>
+          </div>
+        </div>
+        <div className={style.confirmButton} onClick={confirm}>
+          OrderBook
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Main
