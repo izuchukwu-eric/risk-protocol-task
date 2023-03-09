@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useOrderBookContext } from '../context/context';
 import { AiOutlineDown } from 'react-icons/ai'
 import Image from 'next/image'
 import Modal from './Modal';
 import { Token } from '../utils/types';
+import Link from 'next/link';
 
 const style = {
   wrapper: `w-screen flex items-center justify-center mb-20`,
@@ -16,20 +16,14 @@ const style = {
   currencySelectorIcon: `flex items-center`,
   currencySelectorTicker: `mx-2`,
   currencySelectorArrow: `text-lg`,
-  confirmButton: `bg-[#2172E5] my-2 rounded-2xl py-6 px-8 text-xl font-semibold flex items-center justify-center cursor-pointer border border-[#2172E5] hover:border-[#234169]`,
+  confirmButton: `bg-[#2172E5] my-2 disabled:opacity-40 w-full rounded-2xl py-6 px-8 text-xl font-semibold flex items-center justify-center cursor-pointer border border-[#2172E5] hover:border-[#234169]`,
 }
 
 const Main = () => {
-  const { getOrderBook } = useOrderBookContext();
   const [payToken, setPayToken] = useState<Token>();
   const [receiveToken, setReceiveToken] = useState<Token>()
   const [showModal, setShowModal] = useState(false);
   const [label, setLabel] = useState<string>("")
-
-
-  const confirm = () => {
-    // getOrderBook(quoteToken?.value, baseToken?.value)
-  }
 
   const onShowModal = (text: string) => {
     setLabel(text);
@@ -111,9 +105,11 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className={style.confirmButton} onClick={confirm}>
-          OrderBook
-        </div>
+        <Link href={'/orderbook'}>
+          <button disabled={!payToken || !receiveToken} className={style.confirmButton}>
+            OrderBook
+          </button>
+        </Link>
       </div>
     </div>
   )

@@ -14,20 +14,6 @@ export const Tokens = [
       symbol: "ETH",
     },
     {
-      id: 2,
-      name: "Tether",
-      imageUrl:
-        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/USDT.svg",
-      symbol: "USDT",
-    },
-    {
-      id: 3,
-      name: "BNB",
-      imageUrl:
-        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/BNB.svg",
-      symbol: "BNB",
-    },
-    {
       id: 4,
       name: "USDC",
       imageUrl:
@@ -45,22 +31,36 @@ export const Tokens = [
       id: 6,
       name: "Carano",
       imageUrl:
-        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/ADA.svg",
+      "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/ADA.svg",
       symbol: "ADA",
     },
     {
       id: 7,
       name: "Polkadot",
       imageUrl:
-        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/DOT.svg",
+      "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/DOT.svg",
       symbol: "DOT",
     },
     {
       id: 8,
       name: "Polygon",
       imageUrl:
-        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/MATIC.svg",
+      "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/MATIC.svg",
       symbol: "MATIC",
+    },
+    {
+      id: 2,
+      name: "Tether",
+      imageUrl:
+        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/USDT.svg",
+      symbol: "USDT",
+    },
+    {
+      id: 3,
+      name: "BNB",
+      imageUrl:
+        "https://res.cloudinary.com/busha-inc/image/upload/v1628857343/App/Currencies/BNB.svg",
+      symbol: "BNB",
     },
     {
       id: 9,

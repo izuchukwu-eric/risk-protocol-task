@@ -2,11 +2,8 @@ import React, { useState, ReactElement, createContext, useContext, useEffect } f
 import { ApiResponse, Record } from '../utils/types';
 
 interface OrderContextType {
-    getOrderBook: any;
     getUpdate: any;
     getCurrentState: any;
-    bids: any,
-    asks: any,
     state: any
 }
 
@@ -18,23 +15,6 @@ export const OrderBookContext = createContext<OrderContextType>({} as OrderConte
 
 export const OrderBookProvider = ({ children }: Props  ) => {
   const [state, setState] = useState<ApiResponse>();
-  const [bids, setBids] = useState<[]>([]);
-  const [asks, setAsks] = useState<[]>([]);
-
-
-    const getOrderBook = async (qouteToken: string, baseToken: string) => {
-      try {
-        const res = await fetch(`/api/getOrderBook`,);
-        const data = await res.json()
-        if(data) {
-          console.log(data.data.bids)
-          setBids(data.data.bids.records);
-          setAsks(data.data.asks.records);
-        }
-      } catch (error: any) {
-        console.log(error.message)
-      }
-    }
 
     const getCurrentState = async () => {
       const url =
@@ -65,7 +45,7 @@ export const OrderBookProvider = ({ children }: Props  ) => {
     };
 
   return (
-    <OrderBookContext.Provider value={{ bids, asks, getOrderBook, getUpdate, getCurrentState, state }}>
+    <OrderBookContext.Provider value={{ getUpdate, getCurrentState, state }}>
       {children}
     </OrderBookContext.Provider>
   )
