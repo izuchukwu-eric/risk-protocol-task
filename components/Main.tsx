@@ -19,16 +19,6 @@ const style = {
   confirmButton: `bg-[#2172E5] my-2 rounded-2xl py-6 px-8 text-xl font-semibold flex items-center justify-center cursor-pointer border border-[#2172E5] hover:border-[#234169]`,
 }
 
-const options = [
-  { value: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', label: 'WETH'},
-  { value: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52', label: 'BNB' },
-  { value: '0x6b175474e89094c44da98b954eedeac495271d0f', label: 'ETH' },
-  { value: '0xdAC17F958D2ee523a2206206994597C13D831ec7', label: 'USDT'},
-  { value: '0x6B175474E89094C44Da98b954EedeAC495271d0F', label: 'DAI'},
-  { value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', label: 'USDC'},
-  { value: '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', label: 'MKR'},
-];
-
 const Main = () => {
   const { getOrderBook } = useOrderBookContext();
   const [payToken, setPayToken] = useState<Token>();
